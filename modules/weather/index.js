@@ -1,8 +1,10 @@
 import axios from 'axios'
+import dotenv from 'dotenv'
+dotenv.config()
 
 export const getWeatherInKelvin = async (location) => { 
   try {
-    const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=af5d63aa5eef14df6719131f7cc4c5a2`)
+    const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.WEATHER_APP_ID}`)
     return response.data.main.temp
   } catch (error) {
     return error.response.data.message

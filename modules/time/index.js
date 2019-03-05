@@ -1,4 +1,6 @@
 import axios from 'axios'
+import dotenv from 'dotenv'
+dotenv.config()
 
 export const getTime = async (location) => {
   try {
@@ -11,11 +13,11 @@ export const getTime = async (location) => {
 }
 
 const getCoordinates = async (location) => {
-  return await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyCVN0JPNWyFKvKukP43GHkDQmveWIOUn40`)
+  return await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.GOOGLE_KEY}`)
 }
 
 const getTimezone = async (lng, lat, timestamp) => {
-  return await axios.get(`https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=AIzaSyCVN0JPNWyFKvKukP43GHkDQmveWIOUn40`)
+  return await axios.get(`https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=${process.env.GOOGLE_KEY}`)
 }
 
 const getLocalTime = async (lng, lat) => {
